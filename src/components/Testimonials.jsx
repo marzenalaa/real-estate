@@ -1,58 +1,36 @@
-import { testimonialsData } from "../assets/assets";
+import { testimonials } from "../constants";
+import { motion } from "framer-motion";
+import Title from "./Title";
+import TestimonialCard from "./TestimonialCard";
 
 const Testimonials = () => {
+  const { heading, subHeading, text, testimonialsData } = testimonials;
   return (
-    <section
-      className="container mx-auto py-10 lg:px-32 w-full overflow-hidden"
+    <motion.section
+      initial={{
+        opacity: 0,
+        x: 100,
+      }}
+      transition={{ duration: 1.5 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      className="container mx-auto py-14 lg:px-32 w-full overflow-hidden"
       id="Testimonials"
     >
-      <h1 className="text-2xl sm:text-4xl font-bold mb-4 text-center">
-        Customer{" "}
-        <span className="underline underline-offset-4 decoration-1 under font-medium">
-          Testimonials
-        </span>
-      </h1>
-      <p className="text-gray-700 max-w-80 text-center mb-8 mx-auto">
-        Real Stories from those who have experienced our services.
-      </p>
-      <div className="flex flex-wrap justify-center gap-8">
+      <Title heading={heading} subHeading={subHeading} text={text} />
+      <div className="flex flex-wrap justify-center gap-8 py-4">
         {testimonialsData.map((testimonial, index) => (
-          <div
+          <motion.div
             key={index}
-            className="max-w-[280px] bg-gray-100 p-6 rounded-lg shadow-lg"
+            initial={{ opacity: 0, x: -150 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
           >
-            <div className="flex items-center mb-4">
-              <img
-                src={testimonial.image}
-                alt={testimonial.alt}
-                className="w-16 h-16 rounded-full mr-4"
-              />
-              <div>
-                <h2 className="font-semibold">{testimonial.name}</h2>
-                <p className="text-gray-500">
-                  {Array.from({ length: testimonial.rating }, (item, i) => (
-                    <svg
-                      key={i}
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 text-yellow-500 inline"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      stroke="none"
-                    >
-                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                    </svg>
-                  ))}
-                </p>
-              </div>
-            </div>
-            <p className="text-gray-900 font-medium my-4 text-center">
-              {testimonial.title}
-            </p>
-            <p className="text-gray-700 text-center">{testimonial.text}</p>
-          </div>
+            <TestimonialCard testimonial={testimonial} />
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,38 +1,40 @@
+import Button from "./Button";
 import Navbar from "./Navbar";
+import { header } from "../constants";
+import { motion } from "framer-motion";
 
 const Header = () => {
+  const { heading, text, buttons } = header;
   return (
-    <div
+    <section
       className="min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden"
       style={{ backgroundImage: "url('/header_img.png')" }}
+      role="img"
+      aria-label="A beautiful scenic view of a real estate property"
       id="Header"
     >
       <Navbar />
-      <div className="container mx-auto text-center text-white py-4 px-6 md:px-20 lg:px-32">
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 100,
+        }}
+        transition={{ duration: 1.5 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="container mx-auto text-center text-white py-4 px-6 md:px-20 lg:px-32"
+      >
         <h1 className="text-5xl sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20">
-          Explore homes that fit your dreams.
+          {heading}
         </h1>
-        <p className="text-white text-lg mt-8">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt
-          eaque dignissimos? Totam aliquid tenetur voluptas a sint numquam
-          voluptatum corrupti, repellat soluta deserunt temporibus.
-        </p>
+        <p className="text-white text-lg my-8 max-w-2xl mx-auto">{text}</p>
         <div className="space-x-6 mt-16">
-          <a
-            href="#Projects"
-            className="bg-white px-8 py-2 rounded-full font-medium text-black"
-          >
-            Projects
-          </a>
-          <a
-            href="#Contact"
-            className="bg-white px-8 py-2 rounded-full font-medium text-black"
-          >
-            Contact Us
-          </a>
+          {buttons.map((btn, i) => (
+            <Button key={i} {...btn} />
+          ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 
