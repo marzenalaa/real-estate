@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 const Header = () => {
   const { heading, text, buttons } = header;
+
   return (
     <section
       className="min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden"
