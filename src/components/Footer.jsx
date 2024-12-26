@@ -40,7 +40,7 @@ const Footer = () => {
             <Button
               title={footer.buttonText}
               className="bg-bonusBlue text-white text-center w-full md:w-32"
-              href=""
+              href="#"
             />
           </div>
         </div>
