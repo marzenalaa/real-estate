@@ -2,14 +2,9 @@ import Button from "./Button";
 import Navbar from "./Navbar";
 import { header } from "../constants";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 const Header = () => {
   const { heading, text, buttons } = header;
-    useEffect(() => {
-    const preloadImage = new Image();
-    preloadImage.src = "/header_img.png";
-  }, []);
   return (
     <section
       className="min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden"
