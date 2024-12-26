@@ -28,11 +28,9 @@ const Contact = () => {
         toast.success("Form Submitted Successfully!");
         event.target.reset();
       } else {
-        console.log("Error", data);
-        toast.error(data.message || "An error occurred, please try again.");
+        toast.error("An error occurred, please try again.");
       }
     } catch (error) {
-      console.log("Error", error);
       toast.error("An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);
